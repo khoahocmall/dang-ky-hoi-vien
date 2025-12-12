@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa Học Mall - Ưu Đãi Gói Ghép Nhóm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --primary-color: #0066ff; /* Xanh dương tươi */
+            --primary-dark: #004ecc;
+            --accent-color: #ffcc00;
+            --highlight-bg: #e6f0ff;
+            --border-color: #b3d7ff; 
+            --text-color: #333;
+            --white: #ffffff;
+            --danger: #ff4757;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: 1.4em;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+        .logo span { color: #333; }
+
+        .cta-btn-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: 0.3s;
+        }
+        .cta-btn-header:hover { background: var(--primary-dark); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            margin-top: 60px;
+            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+            padding: 50px 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #1a202c;
+            line-height: 1.3;
+        }
+        
+        .hero h1 span {
+            color: var(--primary-color);
+            display: block;
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 60px 0;
+            background: var(--white);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: white;
+            border: 1px solid #eff6ff; 
+            transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+        .feature-icon-box {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- DEMO SECTION --- */
+        .demo-section {
+            padding: 60px 0;
+            background-color: #f4f6f8;
+            text-align: center;
+        }
+        
+        .browser-mockup {
+            max-width: 1000px;
+            margin: 30px auto 0;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            background: white;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .browser-header {
+            background: #eef1f5;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .browser-address {
+            background: white;
+            flex-grow: 1;
+            margin-left: 15px;
+            border-radius: 5px;
+            padding: 5px 15px;
+            font-size: 0.8em;
+            color: #777;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        .demo-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: block;
+        }
+
+        /* --- PRICING SECTION STYLES --- */
+        .pricing-section {
+            background: #ffffff;
+            padding: 60px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* --- CARD PRICING --- */
+        .v2-container {
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+            margin-bottom: 60px;
+        }
+        .v2-card {
+            background: white; 
+            width: 300px; 
+            padding: 30px 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center; 
+            position: relative; 
+            transition: 0.3s; 
+            border: 1px solid #eee; 
+            display: flex; 
+            flex-direction: column;
+        }
+        .v2-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        
+        .v2-card.popular { border: 2px solid #0066ff; transform: scale(1.05); z-index: 10; }
+        .v2-card.popular:hover { transform: scale(1.08); }
+        
+        /* ĐÃ THU NHỎ KÍCH THƯỚC Ở ĐÂY */
+        .v2-badge {
+            position: absolute; 
+            top: -12px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background: #ffcc00; 
+            color: #000; 
+            padding: 3px 12px; /* Padding nhỏ hơn */
+            border-radius: 20px; 
+            font-weight: 800; 
+            font-size: 0.7em; /* Font nhỏ hơn */
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            white-space: nowrap;
+        }
+        
+        .v2-title { font-size: 1.2em; font-weight: 600; color: #555; margin-bottom: 10px; }
+        .v2-price { font-size: 2.5em; font-weight: 800; color: #333; margin-bottom: 5px; }
+        .v2-price span { font-size: 0.4em; color: #999; font-weight: normal; }
+        .v2-period { font-size: 0.9em; color: #777; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        
+        .v2-features { list-style: none; padding: 0; margin-bottom: auto; text-align: left; }
+        .v2-features li { padding: 10px 0; color: #555; font-size: 0.95em; border-bottom: 1px dashed #eee; display: flex; align-items: center;}
+        .v2-features i { color: #0066ff; margin-right: 10px; width: 20px; text-align: center; flex-shrink: 0; }
+        
+        .v2-btn {
+            margin-top: 25px; padding: 12px; width: 100%; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .v2-btn-basic { background: #e0e0e0; color: #333; }
+        .v2-btn-basic:hover { background: #d0d0d0; }
+        
+        .v2-btn-vip { background: linear-gradient(135deg, #0066ff, #0044cc); color: white; box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3); animation: pulse-btn 1.5s infinite; }
+        .v2-btn-vip:hover { box-shadow: 0 8px 20px rgba(0, 102, 255, 0.5); transform: translateY(-2px); }
+
+
+        /* --- TABLE PRICING --- */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 60, 150, 0.15);
+            background: white;
+            margin-bottom: 20px;
+            border: 2px solid var(--primary-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th, td {
+            padding: 18px 10px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        /* Header Colors */
+        thead tr {
+            background: var(--primary-color);
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        th { font-size: 0.95em; letter-spacing: 0.5px; }
+
+        /* HOVER EFFECTS - CHỈ GIỮ ĐỔ BÓNG VÀ MÀU NỀN, KHÔNG PHÓNG TO */
+        tbody tr {
+            transition: all 0.2s ease-in-out;
+            background-color: #fff;
+        }
+
+        tbody tr:hover {
+            /* transform: scale(1.01); <-- ĐÃ BỎ SCALE */
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.2); 
+            background-color: #fdfdfd; 
+            border-left: 5px solid var(--primary-color); 
+        }
+        
+        tbody tr:hover td {
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+        }
+
+        /* HIGHLIGHT GROUP PACKAGE (COLUMN 4) */
+        td:nth-child(4), th:nth-child(4) {
+            background-color: var(--highlight-bg); 
+            font-weight: 600;
+            border-left: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        tbody tr:hover td:nth-child(4) {
+            background-color: #dbeafe;
+            box-shadow: inset 0 0 10px rgba(0, 102, 255, 0.1);
+        }
+
+        th:nth-child(4) { 
+            background-color: var(--primary-dark); 
+            font-size: 1.1em; 
+            padding-top: 35px;
+        }
+
+        th:nth-child(4)::after {
+            content: "🔥 BEST CHOICE";
+            position: absolute;
+            top: 5px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: #000;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.6em;
+            font-weight: 800;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: bounce 2s infinite; 
+        }
+
+        .price-original { text-decoration: line-through; color: #888; font-size: 0.9em; }
+        .price-deal { color: var(--primary-color); font-size: 1.6em; font-weight: 800; display: block; margin-top: 5px;}
+        .feature-icon { color: var(--primary-color); margin-right: 5px; }
+
+        .btn-table {
+            display: inline-block; padding: 10px 20px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 0.85em; 
+            white-space: nowrap; transition: 0.3s;
+        }
+        .btn-basic { border: 2px solid #ccc; color: #666; background: transparent; }
+        .btn-basic:hover { border-color: var(--primary-color); color: var(--primary-color); background: var(--highlight-bg); }
+        
+        .btn-vip {
+            background: linear-gradient(45deg, #ff5e00, #ff0000); 
+            color: white; border: none;
+            box-shadow: 0 4px 15px rgba(255, 60, 0, 0.4); 
+            /* animation: pulse-btn 1.5s infinite; <-- ĐÃ BỎ RUNG TRONG BẢNG */
+        }
+        .btn-vip:hover { 
+            box-shadow: 0 8px 25px rgba(255, 60, 0, 0.6); 
+        }
+
+        .badge-save {
+            background: linear-gradient(45deg, #2196F3, #21CBF3); 
+            color: white; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.75em;
+            display: inline-block; margin-top: 5px;
+        }
+        .badge-limited { background: var(--danger); color: white; padding: 4px 8px; border-radius: 5px; font-size: 0.8em; display: inline-flex; align-items: center; gap: 5px; justify-content: center; }
+
+        .note-box {
+            background-color: #e3f2fd;
+            border: 2px solid var(--primary-color);
+            padding: 15px; border-radius: 10px; margin-top: 20px;
+            display: flex; align-items: center; gap: 15px;
+            color: #444; text-align: left;
+        }
+        .note-box i { color: var(--primary-color); font-size: 1.5em; flex-shrink: 0; }
+        .note-box strong { color: var(--primary-dark); }
+
+        footer {
+            background: #1a202c; color: white; text-align: center; padding: 20px 0; margin-top: auto;
+        }
+
+        /* Animations */
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-3px);} 60% {transform: translateX(-50%) translateY(-2px);} }
+        @keyframes pulse-btn { 0% { box-shadow: 0 0 0 0 rgba(255, 60, 0, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 60, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 60, 0, 0); } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.6em; }
+            .demo-iframe { height: 400px; }
+            .table-responsive {
+                border-right: 0; border-left: 0; border-radius: 0;
+                width: 100vw; margin-left: -15px; margin-right: -15px;
+            }
+            th, td { padding: 12px 5px; font-size: 0.85em; }
+            .btn-table { padding: 8px 12px; font-size: 0.8em; }
+            .price-deal { font-size: 1.3em; }
+            .v2-card { width: 100%; max-width: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">Khóa Học<span> Mall</span></div>
+            <a href="#pricing" class="cta-btn-header">Nhận Ưu Đãi</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Cơ Hội Sở Hữu Kho Tàng Kiến Thức <br><span>CHỈ VỚI 333K / TRỌN ĐỜI</span></h1>
+            <p>Tại sao phải trả 999k khi bạn có thể mua chung với giá rẻ hơn 66%? Hệ thống hỗ trợ ghép nhóm tự động.</p>
+            <a href="#pricing" class="btn-table btn-vip" style="font-size: 1em; padding: 12px 30px; margin-top: 20px;">
+                <i class="fas fa-arrow-down"></i> Xem Bảng Giá
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fas fa-users"></i></div>
+                    <h3>Ghép Nhóm Tự Động</h3>
+                    <p>Hệ thống tự động tìm và ghép bạn với những học viên khác. Không cần chờ đợi, không cần tìm người.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fas fa-bolt"></i></div>
+                    <h3>Kích Hoạt Siêu Tốc</h3>
+                    <p>Chỉ từ 2-5 phút sau khi đăng ký thành công, tài khoản học tập sẽ được gửi về Email của bạn.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fas fa-user-shield"></i></div>
+                    <h3>Riêng Tư Tuyệt Đối</h3>
+                    <p>Mỗi người 1 tài khoản riêng biệt. Học độc lập, lưu tiến độ riêng, không dùng chung mật khẩu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="section-title">Trải Nghiệm Giao Diện VIP</h2>
+            <p style="text-align:center; margin-bottom: 20px;">Giao diện học tập hiện đại, dễ sử dụng, hỗ trợ mọi thiết bị.</p>
+            
+            <div class="browser-mockup">
+                <div class="browser-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <div class="browser-address">khoahocmall.com/hoi-vien-vip</div>
+                </div>
+                <iframe src="https://khoahocmall.github.io/hoivienvip/" class="demo-iframe" title="Giao diện học tập demo"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            
+            <h2 class="section-title">Lựa Chọn Gói Học</h2>
+            <p class="section-subtitle">Chọn gói phù hợp nhất với nhu cầu và ngân sách của bạn</p>
+
+            <div class="v2-container">
+                <div class="v2-card">
+                    <div class="v2-title">Gói 1 Năm</div>
+                    <div class="v2-price">799K</div>
+                    <div class="v2-period">Sử dụng trong 01 năm</div>
+                    <ul class="v2-features">
+                        <li><i class="fas fa-user"></i> 01 Tài khoản cá nhân</li>
+                        <li><i class="fas fa-book"></i> Kho kiến thức hiện có</li>
+                        <li><i class="fas fa-sync"></i> Cập nhật mới (1 năm)</li>
+                    </ul>
+                    <a href="https://khoahocmall.com/checkout/?add-to-cart=10960" class="v2-btn v2-btn-basic" style="text-align: center; display: block; text-decoration: none;">Đăng Ký</a>
+                </div>
+
+                <div class="v2-card popular">
+                    <div class="v2-badge">🔥 BEST CHOICE</div>
+                    <div class="v2-title">Gói Ghép Nhóm</div>
+                    <div class="v2-price">333K<span>/người</span></div>
+                    <div class="v2-period" style="color: #0066ff; font-weight:bold;">Sở hữu Vĩnh Viễn</div>
+                    <ul class="v2-features">
+                        <li><i class="fas fa-users"></i> <strong>03 Tài khoản riêng biệt</strong></li>
+                        <li><i class="fas fa-lock"></i> Riêng tư tuyệt đối</li>
+                        <li><i class="fas fa-infinity"></i> Học trọn đời</li>
+                        <li><i class="fas fa-gift"></i> Full quyền lợi update</li>
+                        <li style="color:red"><i class="fas fa-clock"></i> Hạn chót: 31/12/2025</li>
+                    </ul>
+                    <a href="https://khoahocmall.com/checkout/?add-to-cart=12488" class="v2-btn v2-btn-vip" style="text-align: center; display: block; text-decoration: none;">🔥ĐĂNG KÝ NGAY🔥</a>
+                </div>
+
+                <div class="v2-card">
+                    <div class="v2-title">Gói Vĩnh Viễn</div>
+                    <div class="v2-price">999K</div>
+                    <div class="v2-period">Sở hữu trọn đời</div>
+                    <ul class="v2-features">
+                        <li><i class="fas fa-user"></i> 01 Tài khoản cá nhân</li>
+                        <li><i class="fas fa-book"></i> Kho kiến thức hiện có</li>
+                        <li><i class="fas fa-sync"></i> Cập nhật mới trọn đời</li>
+                    </ul>
+                    <a href="https://khoahocmall.com/checkout/?add-to-cart=11703" class="v2-btn v2-btn-basic" style="text-align: center; display: block; text-decoration: none;">Đăng Ký</a>
+                </div>
+            </div>
+
+            <h2 class="section-title">So Sánh Chi Tiết Quyền Lợi</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Đặc điểm</th>
+                            <th style="width: 25%;">👤 Gói Cá Nhân<br><span style="font-size: 0.7em; opacity: 0.9; text-transform: none;">(1 Năm)</span></th>
+                            <th style="width: 25%;">👤 Gói Cá Nhân<br><span style="font-size: 0.7em; opacity: 0.9; text-transform: none;">(Vĩnh Viễn)</span></th>
+                            <th style="width: 30%;">👥 Gói Ghép Nhóm<br><span style="font-size: 0.7em; opacity: 0.9; text-transform: none;">(Tối đa 3 người)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: bold;"><i class="fas fa-tag feature-icon"></i>Giá Tiền</td>
+                            <td><span class="price-deal" style="font-size: 1.4em;">799K</span></td>
+                            <td><span class="price-deal" style="font-size: 1.4em;">999K</span></td>
+                            <td><span class="price-deal">333K</span><br><span class="badge-save">✨ TIẾT KIỆM 66%</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;"><i class="fas fa-crown feature-icon"></i>Quyền Sở Hữu</td>
+                            <td>1 Năm</td>
+                            <td>Vĩnh Viễn</td>
+                            <td><i class="fas fa-check-circle" style="color:var(--primary-color)"></i> Vĩnh Viễn (Trọn đời)</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;"><i class="fas fa-users feature-icon"></i>Tài Khoản</td>
+                            <td>01 Tài khoản</td>
+                            <td>01 Tài khoản</td>
+                            <td style="font-weight:bold; color: #0072ff;">03 Tài khoản Riêng</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;"><i class="fas fa-cogs feature-icon"></i>Cơ Chế</td>
+                            <td>Cá nhân</td>
+                            <td>Cá nhân</td>
+                            <td><span style="color: var(--danger); font-weight: bold;">KHÔNG DÙNG CHUNG</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;"><i class="fas fa-rocket feature-icon"></i>Kích Hoạt</td>
+                            <td>Tự động 2-5 phút</td>
+                            <td>Tự động 2-5 phút</td>
+                            <td><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Tự động 2-5 phút</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;"><i class="fas fa-hourglass-half feature-icon"></i>Hạn Chót</td>
+                            <td>Không áp dụng</td>
+                            <td>Không áp dụng</td>
+                            <td><div class="badge-limited"><i class="fas fa-clock"></i> 31/12/2025</div></td>
+                        </tr>
+                        <tr style="background-color: #f8fbff;">
+                            <td style="font-weight: bold;"><i class="fas fa-paper-plane feature-icon"></i>Đăng Ký</td>
+                            <td><a href="https://khoahocmall.com/checkout/?add-to-cart=10960" class="btn-table btn-basic">Đăng Ký</a></td>
+                            <td><a href="https://khoahocmall.com/checkout/?add-to-cart=11703" class="btn-table btn-basic">Đăng Ký</a></td>
+                            <td><a href="https://khoahocmall.com/checkout/?add-to-cart=12488" class="btn-table btn-vip"><i class="fas fa-bolt"></i> CHỐT NGAY</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-box">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>ĐỪNG QUÁ LO:</strong> Nếu bạn chưa tìm được người để ghép, đừng quá lo lắng! 
+                    Hệ thống sẽ <u>tìm kiếm ngẫu nhiên</u> những bạn trong cơ sở dữ liệu của Web có nhu cầu nâng cấp và ghép với bạn tự động.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Khóa Học Mall. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
