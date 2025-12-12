@@ -11,7 +11,8 @@
         :root {
             --primary-color: #0066ff; /* Xanh dương tươi */
             --primary-dark: #004ecc;
-            --accent-color: #ffcc00;
+            --accent-color: #ffcc00; /* Vàng nổi bật */
+            --accent-dark: #e6b800; /* Vàng tối hơn khi hover */
             --highlight-bg: #e6f0ff;
             --border-color: #b3d7ff; 
             --text-color: #333;
@@ -62,6 +63,33 @@
         }
         .logo span { color: #333; }
 
+        /* Nhóm các nút bên phải */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Khoảng cách giữa 2 nút */
+        }
+
+        /* --- NÚT TRANG CHỦ MỚI (VÀNG NỔI BẬT) --- */
+        .btn-home-yellow {
+            background: var(--accent-color);
+            color: #333; /* Chữ màu tối trên nền vàng để dễ đọc */
+            padding: 6px 15px;
+            border-radius: 30px; /* Bo tròn giống nút ưu đãi */
+            font-weight: 700;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3); /* Đổ bóng nhẹ màu vàng */
+        }
+
+        .btn-home-yellow:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px); /* Hiệu ứng nổi lên khi di chuột */
+            box-shadow: 0 6px 15px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Nút Nhận Ưu Đãi (Giữ nguyên) */
         .cta-btn-header {
             background: var(--primary-color);
             color: white;
@@ -70,6 +98,7 @@
             font-weight: 600;
             font-size: 0.9em;
             transition: 0.3s;
+            white-space: nowrap;
         }
         .cta-btn-header:hover { background: var(--primary-dark); }
 
@@ -407,7 +436,10 @@
     <header>
         <div class="container nav-wrapper">
             <div class="logo">Khóa Học<span> Mall</span></div>
-            <a href="#pricing" class="cta-btn-header">Nhận Ưu Đãi</a>
+            <div class="nav-right">
+                <a href="https://khoahocmall.com/" class="btn-home-yellow">Trang Chủ</a>
+                <a href="#pricing" class="cta-btn-header">Nhận Ưu Đãi</a>
+            </div>
         </div>
     </header>
 
