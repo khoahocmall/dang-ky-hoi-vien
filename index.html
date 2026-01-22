@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khóa Học Mall - Ưu Đãi Gói Ghép Nhóm</title>
+    <title>Khóa Học Mall - Nâng Cấp HỘI VIÊN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -12,12 +12,13 @@
             --primary-color: #0066ff; /* Xanh dương tươi */
             --primary-dark: #004ecc;
             --accent-color: #ffcc00; /* Vàng nổi bật */
-            --accent-dark: #e6b800; /* Vàng tối hơn khi hover */
+            --accent-dark: #e6b800;
             --highlight-bg: #e6f0ff;
             --border-color: #b3d7ff; 
             --text-color: #333;
             --white: #ffffff;
             --danger: #ff4757;
+            --urgency-bg: #fff0f0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,33 +64,30 @@
         }
         .logo span { color: #333; }
 
-        /* Nhóm các nút bên phải */
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px; /* Khoảng cách giữa 2 nút */
+            gap: 15px; 
         }
 
-        /* --- NÚT TRANG CHỦ MỚI (VÀNG NỔI BẬT) --- */
         .btn-home-yellow {
             background: var(--accent-color);
-            color: #333; /* Chữ màu tối trên nền vàng để dễ đọc */
+            color: #333; 
             padding: 6px 15px;
-            border-radius: 30px; /* Bo tròn giống nút ưu đãi */
+            border-radius: 30px; 
             font-weight: 700;
             font-size: 0.9em;
             transition: all 0.3s ease;
             white-space: nowrap;
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3); /* Đổ bóng nhẹ màu vàng */
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3); 
         }
 
         .btn-home-yellow:hover {
             background: var(--accent-dark);
-            transform: translateY(-2px); /* Hiệu ứng nổi lên khi di chuột */
+            transform: translateY(-2px); 
             box-shadow: 0 6px 15px rgba(255, 204, 0, 0.5);
         }
 
-        /* Nút Nhận Ưu Đãi (Giữ nguyên) */
         .cta-btn-header {
             background: var(--primary-color);
             color: white;
@@ -102,11 +100,24 @@
         }
         .cta-btn-header:hover { background: var(--primary-dark); }
 
+        /* --- NOTIFICATION BAR --- */
+        .notification-bar {
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-top: 60px; /* Đẩy xuống khỏi header */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            animation: fadeInDown 0.5s ease-out;
+        }
+        .notification-bar i { margin-right: 8px; color: #ffeb3b; animation: flash 1s infinite alternate; }
+
         /* --- HERO SECTION --- */
         .hero {
-            margin-top: 60px;
-            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
-            padding: 50px 0 40px;
+            background: linear-gradient(180deg, #fff5f5 0%, #ffffff 100%); /* Nền hơi hồng nhẹ tạo cảm giác gấp */
+            padding: 40px 0 40px;
             text-align: center;
         }
 
@@ -122,6 +133,54 @@
             display: block;
             font-size: 1.2em;
             margin-top: 5px;
+        }
+
+        .hero-subtext {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        /* COUNTDOWN TIMER */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .time-box {
+            background: var(--white);
+            border: 2px solid var(--danger);
+            border-radius: 8px;
+            padding: 10px 15px;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.2);
+        }
+        .time-number {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--danger);
+            display: block;
+            line-height: 1;
+        }
+        .time-label {
+            font-size: 0.7em;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* AUTO ACTIVE BADGE */
+        .auto-active-badge {
+            display: inline-block;
+            background: #e6f7ed;
+            color: #00b894;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            border: 1px solid #00b894;
+            margin-bottom: 15px;
         }
 
         /* --- FEATURES SECTION --- */
@@ -247,7 +306,6 @@
         .v2-card.popular { border: 2px solid #0066ff; transform: scale(1.05); z-index: 10; }
         .v2-card.popular:hover { transform: scale(1.08); }
         
-        /* ĐÃ THU NHỎ KÍCH THƯỚC Ở ĐÂY */
         .v2-badge {
             position: absolute; 
             top: -12px; 
@@ -255,10 +313,10 @@
             transform: translateX(-50%);
             background: #ffcc00; 
             color: #000; 
-            padding: 3px 12px; /* Padding nhỏ hơn */
+            padding: 3px 12px;
             border-radius: 20px; 
             font-weight: 800; 
-            font-size: 0.7em; /* Font nhỏ hơn */
+            font-size: 0.7em; 
             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
             white-space: nowrap;
         }
@@ -316,14 +374,13 @@
 
         th { font-size: 0.95em; letter-spacing: 0.5px; }
 
-        /* HOVER EFFECTS - CHỈ GIỮ ĐỔ BÓNG VÀ MÀU NỀN, KHÔNG PHÓNG TO */
+        /* HOVER EFFECTS */
         tbody tr {
             transition: all 0.2s ease-in-out;
             background-color: #fff;
         }
 
         tbody tr:hover {
-            /* transform: scale(1.01); <-- ĐÃ BỎ SCALE */
             z-index: 100;
             box-shadow: 0 5px 20px rgba(0, 102, 255, 0.2); 
             background-color: #fdfdfd; 
@@ -386,7 +443,6 @@
             background: linear-gradient(45deg, #ff5e00, #ff0000); 
             color: white; border: none;
             box-shadow: 0 4px 15px rgba(255, 60, 0, 0.4); 
-            /* animation: pulse-btn 1.5s infinite; <-- ĐÃ BỎ RUNG TRONG BẢNG */
         }
         .btn-vip:hover { 
             box-shadow: 0 8px 25px rgba(255, 60, 0, 0.6); 
@@ -416,6 +472,8 @@
         /* Animations */
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-3px);} 60% {transform: translateX(-50%) translateY(-2px);} }
         @keyframes pulse-btn { 0% { box-shadow: 0 0 0 0 rgba(255, 60, 0, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 60, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 60, 0, 0); } }
+        @keyframes flash { from { opacity: 1; } to { opacity: 0.5; } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.6em; }
@@ -428,6 +486,9 @@
             .btn-table { padding: 8px 12px; font-size: 0.8em; }
             .price-deal { font-size: 1.3em; }
             .v2-card { width: 100%; max-width: 320px; }
+            .notification-bar { font-size: 0.85em; }
+            .time-box { min-width: 55px; padding: 8px 5px; }
+            .time-number { font-size: 1.2em; }
         }
     </style>
 </head>
@@ -443,12 +504,41 @@
         </div>
     </header>
 
+    <div class="notification-bar">
+        <div class="container">
+            <i class="fas fa-fire"></i> Đã có hơn 100 bạn đăng ký, số lượng giới hạn chỉ còn 199 slot cuối cùng!
+        </div>
+    </div>
+
     <section class="hero">
         <div class="container">
-            <h1>Cơ Hội Sở Hữu Kho Tàng Kiến Thức <br><span>CHỈ VỚI 333K / TRỌN ĐỜI</span></h1>
-            <p>Tại sao phải trả 999k khi bạn có thể mua chung với giá rẻ hơn 66%? Hệ thống hỗ trợ ghép nhóm tự động.</p>
-            <a href="#pricing" class="btn-table btn-vip" style="font-size: 1em; padding: 12px 30px; margin-top: 20px;">
-                <i class="fas fa-arrow-down"></i> Xem Bảng Giá
+            <span class="auto-active-badge"><i class="fas fa-bolt"></i> KÍCH HOẠT TỰ ĐỘNG - HỌC NGAY LẬP TỨC</span>
+            
+            <h1>Cơ Hội Sở Hữu Kho Tàng Kiến Thức <br><span>CHỈ VỚI 499K / TRỌN ĐỜI</span></h1>
+            
+            <p class="hero-subtext">Tiết kiệm 50% so với mua lẻ. Hệ thống ghép nhóm tự động, không cần chờ đợi.</p>
+            
+            <div class="countdown-container" id="countdown">
+                <div class="time-box">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">Ngày</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">Giờ</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">Phút</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">Giây</span>
+                </div>
+            </div>
+
+            <a href="#pricing" class="btn-table btn-vip" style="font-size: 1.1em; padding: 15px 40px; margin-top: 10px;">
+                <i class="fas fa-arrow-down"></i> Săn Deal Ngay
             </a>
         </div>
     </section>
@@ -464,7 +554,7 @@
                 <div class="feature-card">
                     <div class="feature-icon-box"><i class="fas fa-bolt"></i></div>
                     <h3>Kích Hoạt Siêu Tốc</h3>
-                    <p>Chỉ từ 2-5 phút sau khi đăng ký thành công, tài khoản học tập sẽ được gửi về Email của bạn.</p>
+                    <p>Chỉ từ 2-5 phút sau khi đăng ký thành công, tài khoản học tập sẽ được kích hoạt tự động.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-box"><i class="fas fa-user-shield"></i></div>
@@ -514,14 +604,14 @@
                 <div class="v2-card popular">
                     <div class="v2-badge">🔥 BEST CHOICE</div>
                     <div class="v2-title">Gói Ghép Nhóm</div>
-                    <div class="v2-price">333K<span>/người</span></div>
+                    <div class="v2-price">499K<span>/người</span></div>
                     <div class="v2-period" style="color: #0066ff; font-weight:bold;">Sở hữu Vĩnh Viễn</div>
                     <ul class="v2-features">
                         <li><i class="fas fa-users"></i> <strong>Ghép nhóm tự động (tối đa 3 người)</strong></li>
                         <li><i class="fas fa-lock"></i> Riêng tư tuyệt đối</li>
                         <li><i class="fas fa-infinity"></i> Học trọn đời</li>
                         <li><i class="fas fa-gift"></i> Full quyền lợi như gói 999K</li>
-                        <li style="color:red"><i class="fas fa-clock"></i> Hạn chót: 11/01/2026</li>
+                        <li style="color:red; font-weight: bold;"><i class="fas fa-clock"></i> Hạn chót: 31/01/2026</li>
                     </ul>
                     <a href="https://khoahocmall.com/checkout/?add-to-cart=12488" target="_blank" class="v2-btn v2-btn-vip" style="text-align: center; display: block; text-decoration: none;">🔥ĐĂNG KÝ NGAY🔥</a>
                 </div>
@@ -555,7 +645,7 @@
                             <td style="font-weight: bold;"><i class="fas fa-tag feature-icon"></i>Giá Tiền</td>
                             <td><span class="price-deal" style="font-size: 1.4em;">799K</span></td>
                             <td><span class="price-deal" style="font-size: 1.4em;">999K</span></td>
-                            <td><span class="price-deal">333K</span><br><span class="badge-save">✨ TIẾT KIỆM 66%</span></td>
+                            <td><span class="price-deal">499K</span><br><span class="badge-save">✨ TIẾT KIỆM 50%</span></td>
                         </tr>
                         <tr>
                             <td style="font-weight: bold;"><i class="fas fa-crown feature-icon"></i>Quyền Sở Hữu</td>
@@ -579,13 +669,13 @@
                             <td style="font-weight: bold;"><i class="fas fa-rocket feature-icon"></i>Kích Hoạt</td>
                             <td>Tự động 2-5 phút</td>
                             <td>Tự động 2-5 phút</td>
-                            <td><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Tự động 2-5 phút</strong></td>
+                            <td><i class="fas fa-check" style="color: var(--primary-color);"></i> <strong>Tự động ngay lập tức</strong></td>
                         </tr>
                         <tr>
                             <td style="font-weight: bold;"><i class="fas fa-hourglass-half feature-icon"></i>Hạn Chót</td>
                             <td>Không áp dụng</td>
                             <td>Không áp dụng</td>
-                            <td><div class="badge-limited"><i class="fas fa-clock"></i> 31/12/2025</div></td>
+                            <td><div class="badge-limited"><i class="fas fa-clock"></i> 31/01/2026</div></td>
                         </tr>
                         <tr style="background-color: #f8fbff;">
                             <td style="font-weight: bold;"><i class="fas fa-paper-plane feature-icon"></i>Đăng Ký</td>
@@ -613,8 +703,31 @@
         </div>
     </footer>
 
+    <script>
+        // Set ngày đích là 31/01/2026 23:59:59
+        var countDownDate = new Date("Jan 31, 2026 23:59:59").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Thêm số 0 đằng trước nếu nhỏ hơn 10
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<div style='color:red; font-weight:bold; font-size:1.5em'>ĐÃ KẾT THÚC ƯU ĐÃI</div>";
+            }
+        }, 1000);
+    </script>
+
 </body>
 </html>
-
-
-
